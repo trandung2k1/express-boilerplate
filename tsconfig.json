@@ -13,19 +13,19 @@
     "alwaysStrict": true,
     "strictPropertyInitialization": false,
     "noImplicitAny": true,
-    "baseUrl": "./src", // Đường dẫn base cho các import
+    // "baseUrl": "./src", // Đường dẫn base cho các import
     "paths": {
-      // "~/*": ["src/*"], // Đường dẫn tương đối cho các import (alias),
-      "@utils/*": ["./utils/*"],
-      "@configs/*": ["./configs/*"],
-      "@controllers/*": ["./controllers/*"],
-      "@routes/*": ["./routes/*"],
-      "@services/*": ["./services/*"],
-      "@helpers/*": ["./helpers/*"],
-      "@entities/*": ["./entities/*"],
-      "@types/*": ["./types/*"],
-      "@middlewares/*": ["./middlewares/*"],
-      "@exceptions/*": ["./exceptions/*"]
+      "@/*": ["./src/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@configs/*": ["./src/configs/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@services/*": ["./src/services/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@types/*": ["./src/types/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@exceptions/*": ["./src/exceptions/*"]
     },
     "allowSyntheticDefaultImports": true,
     "typeRoots": ["./src/types", "./node_modules/@types"]

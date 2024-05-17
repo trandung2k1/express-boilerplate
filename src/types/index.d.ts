@@ -3,6 +3,7 @@ declare global {
     interface ProcessEnv {
       NODE_ENV: 'development' | 'production' | 'test'
       PORT: string
+      ACCESS_TOKEN_SECRET: string
     }
   }
   namespace Express {
