@@ -9,10 +9,10 @@ export interface IRequest extends Request {
   user: IUserPayload
 }
 
-export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
-  const tokenString = req.headers.authorization
+export const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
+  const tokenString: string | undefined = req.headers.authorization
   if (tokenString) {
-    const accessToken = tokenString.split(' ')[1]
+    const accessToken: string = tokenString.split(' ')[1]
     jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, async (error, decoded) => {
       if (error) {
         if (error.name === 'TokenExpiredError')
@@ -29,15 +29,15 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
           })
         }
       } else {
-        const data = decoded as IJwtPayload
-        const dataStore = await redisClient.get('BL_' + data.userId.toString())
+        const data: IJwtPayload = decoded as IJwtPayload
+        const dataStore: string | null = await redisClient.get('BL_' + data.userId.toString())
         if (dataStore == accessToken) {
           return res.status(401).json({
             message: 'Token inside blacklisted',
           })
         } else {
           const { id, isAdmin, email } = data
-          const user = { id, isAdmin, email }
+          const user: { id: string; isAdmin: boolean; email: string } = { id, isAdmin, email }
           req.user = user
           httpContext.set('user', user)
           next()
@@ -45,8 +45,9 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
       }
     })
   } else {
-    return res.status(401).json({
+    res.status(401).json({
       message: 'Token not found',
     })
+    return
   }
 }
