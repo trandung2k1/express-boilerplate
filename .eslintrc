@@ -2,21 +2,24 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "eslint-config-prettier", "prettier"],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": ["./tsconfig.json"]
   },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "eslint-config-prettier", "prettier"],
+  // "parserOptions": {
+  //   "project": "./tsconfig.json"
+  // },
   "rules": {
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     // "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true }],
     "@typescript-eslint/no-unnecessary-type-arguments": "error",
-    "@typescript-eslint/explicit-function-return-type": "warn",
+    "@typescript-eslint/explicit-function-return-type": "error",
     "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true }],
     "@typescript-eslint/consistent-type-definitions": "error",
     "@typescript-eslint/explicit-module-boundary-types": "warn",
     "no-var": "error",
-    // "@typescript-eslint/no-unused-vars-experimental": ["error"],
+    "@typescript-eslint/no-unused-vars-experimental": ["error"],
     "no-unused-vars": "error",
     "@typescript-eslint/typedef": [
       "warn",

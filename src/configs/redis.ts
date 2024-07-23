@@ -1,7 +1,6 @@
-import { createClient } from 'redis'
+import { createClient, RedisClientType } from 'redis'
 
-// eslint-disable-next-line @typescript-eslint/typedef
-const redisClient = createClient({})
+const redisClient: RedisClientType = createClient({})
 
 redisClient.on('error', (err: Error): void => {
   console.log(err)

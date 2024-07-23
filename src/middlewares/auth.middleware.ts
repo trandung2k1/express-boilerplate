@@ -9,7 +9,8 @@ export interface IRequest extends Request {
   user: IUserPayload
 }
 
-export const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/explicit-module-boundary-types
+export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   const tokenString: string | undefined = req.headers.authorization
   if (tokenString) {
     const accessToken: string = tokenString.split(' ')[1]
@@ -37,7 +38,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction): vo
           })
         } else {
           const { id, isAdmin, email } = data
-          const user: { id: string; isAdmin: boolean; email: string } = { id, isAdmin, email }
+          const user: IUserPayload = { id, isAdmin, email }
           req.user = user
           httpContext.set('user', user)
           next()
@@ -45,9 +46,8 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction): vo
       }
     })
   } else {
-    res.status(401).json({
+    return res.status(401).json({
       message: 'Token not found',
     })
-    return
   }
 }
